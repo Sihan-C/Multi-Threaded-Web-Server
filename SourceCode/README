@@ -1,0 +1,5 @@
+How to compile and run my code:
+Use the makefile. Simply type in make in the terminal.
+
+A brief explanation of how my program works
+My program will act as a multithreaded web server. My server will be composed of dispatcher threads and worker threads. Dispatcher threads will repeately accpet incoming connection, read the request from the connection and place the request in a queue (implmented by an global array of  struct request_queue). Woker threads will pick up the work and serve it. Two conditional variable were used in the program to perform syronization. When there are no request in the queue, worker threads will be blocked on items condition variable. If request queue is full, dispatcher thread will be blocked by slots conditional variable. Both dispatcher threads and worker threads run in an infinite loop. If any error occurred (from accept_connection, get_request, pthread_mutex_lock and etc.), they will continue to another iteration without quitting. Hitting ^C will terminate the program and close the log file. 
